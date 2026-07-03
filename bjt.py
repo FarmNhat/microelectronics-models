@@ -7,7 +7,11 @@ import matplotlib.pyplot as plt
 def calculate_bjt_ic(v_be, v_ce, I_s=1e-14, V_T=0.026, V_A=100):
     v_be_clipped = np.clip(v_be, -np.inf, 1)
     v_ce_effect = 1 + (v_ce / V_A)
+
+
     saturation_factor = np.clip(1 - np.exp(-v_ce / 0.1), 0, 1) # nay de mo phong
+
+    
     return I_s * (np.exp(v_be_clipped / V_T) - 1) * v_ce_effect * saturation_factor
 
 
@@ -17,15 +21,17 @@ def load_config(config_file):
 
 
 def small_signal_at_Q(v_be_q, v_ce_q, I_s, V_T, V_A):
-    """Tính Ic_Q, gm (=dIc/dVbe) và go=1/ro (=dIc/dVce) tại điểm phân cực Q."""
+    
     I_c_q = calculate_bjt_ic(v_be_q, v_ce_q, I_s, V_T, V_A)
     g_m = I_c_q / V_T
     g_o = I_c_q / V_A          # go = 1/ro
+
+
     return I_c_q, g_m, g_o
 
 
 def compute_smallsignal_results(config_file):
-    """Tính Ic_Q, gm, ro cho tung diem trong JSON, tra ve danh sach ket qua."""
+    
     cfg = load_config(config_file)
     I_s, V_T, V_A = cfg.get('I_s', 1e-14), cfg.get('V_T', 0.026), cfg.get('V_A', 80)
     points = cfg.get('points', [{'name': 'Q1', 'v_be': 0.7, 'v_ce': 5}])
@@ -39,6 +45,8 @@ def compute_smallsignal_results(config_file):
             'I_c': float(I_c_q), 'g_m': float(g_m),
             'r_o': float(1 / g_o), 'g_o': float(g_o)
         })
+
+
     return results
 
 
