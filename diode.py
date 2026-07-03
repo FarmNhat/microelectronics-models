@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 def load_two_points_from_json(file_path):
-    """Đọc chính xác 2 điểm từ file JSON"""
+    
     with open(file_path, 'r') as f:
         data = json.load(f)
     voltages = np.sort(np.array(data["voltages"]))
@@ -16,12 +16,12 @@ def load_two_points_from_json(file_path):
     return v_A, v_B
 
 def diode_equation(v_in, I_s=1e-14, V_T=0.02585, n=1):
-    """Hàm lõi tính dòng điện Diode phi tuyến (Tín hiệu lớn)"""
+    
     v_in_clipped = np.clip(v_in, -np.inf, 1.0)
     return I_s * (np.exp(v_in_clipped / (n * V_T)) - 1)
 
 def calculate_all_data(v_A, v_B):
-    """Tính toán toàn bộ dữ liệu cho hai mô hình dựa trên v_A và v_B"""
+    
     
     v_min_plot = v_A - 0.15
     v_max_plot = v_B + 0.15
