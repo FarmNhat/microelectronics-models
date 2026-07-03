@@ -79,9 +79,9 @@ def plot_secant_model(v_smooth, i_smooth, i_small_ext, points):
     plt.xlim(v_smooth[0], v_smooth[-1])
     plt.ylim(-1, i_B_mA * 1.4)
     
-    plt.title('Mô hình hóa Tín hiệu lớn & Tín hiệu nhỏ từ file JSON 2 điểm', fontsize=13, fontweight='bold')
-    plt.xlabel('Điện áp $V_D$ (V)', fontsize=11)
-    plt.ylabel('Dòng điện $I_D$ (mA)', fontsize=11)
+    
+    plt.xlabel('$V_D$ (V)', fontsize=11)
+    plt.ylabel('$I_D$ (mA)', fontsize=11)
     plt.grid(True, linestyle=':', alpha=0.5)
     plt.legend(fontsize=10, loc='upper left')
     
