@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "I_s": 1e-14,
+    "V_T": 0.026,
+    "V_A": 80,
+    "points": [
+      {"name": "case_1", "v_be": 0.80, "v_ce": 0.5},
+      {"name": "case_2", "v_be": 0.68, "v_ce": 2.0},
+      {"name": "case_3", "v_be": 0.70, "v_ce": 5.0},
+      {"name": "case_4", "v_be": 0.72, "v_ce": 7.0},
+      {"name": "case_5", "v_be": 0.75, "v_ce": 9.0}
+    ]
+  }
+}
