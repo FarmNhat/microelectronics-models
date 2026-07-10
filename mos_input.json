@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "Vth": 0.7,
+    "k_n": 200e-6,
+    "lambda_": 0.02,
+    "points": [
+      {"name": "Q1", "v_gs": 1.2, "v_ds": 1.8},
+      {"name": "Q2", "v_gs": 1.0, "v_ds": 1.0},
+      {"name": "Q3", "v_gs": 1.5, "v_ds": 2.5},
+      {"name": "Q4", "v_gs": 0.9, "v_ds": 0.3},
+      {"name": "Q5", "v_gs": 1.8, "v_ds": 3.0}
+    ]
+  }
+}
