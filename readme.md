@@ -12,7 +12,8 @@ MOSFET -- Đặc tuyến I-V_GS và V_DS với xấp xỉ small signal gm ro (I-
 Ở những điểm giữa triode và saturation có điểm đứt gãy, nguyên nhân do mô hình có hiệu ứng channel lenght modulation -> tạo ra chênh lệch (1 + lamda) nên hàm số ko liên tục đc giữa 2 mô hình cho triode và saturation.
 
 ![a](freq_response/miller.png)
-Đáp ứng tần số MOSFET với xấp xỉ Miller cực trội ở tần số thấp -> dùng Cgs và Cgd theo mô hình sách Razavi
+Đáp ứng tần số MOSFET với xấp xỉ Miller cực dominant ở tần số thấp 
+-> dùng Cgs và Cgd theo mô hình sách Razavi
 
 ![a](freq_response/exact.png)
-Đáp ứng tần số MOSFET đầy đủ 4 cực (với cực SB nối đất do S nối đất) đầy đủ 2 cực (dominant và non-dominant) theo xấp xỉ nghiệm mẫu số hàm truyền H (theo sách Razavi)
+Đáp ứng tần số MOSFET đầy đủ 4 tụ điện Cgs, Cds, Cdb, Csb (với cực SB nối đất do S nối đất) đầy đủ 2 cực (dominant và non-dominant) theo xấp xỉ nghiệm mẫu số hàm truyền H (theo sách Razavi)
