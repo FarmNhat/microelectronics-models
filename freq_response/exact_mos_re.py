@@ -16,7 +16,7 @@ if not os.path.exists(json_filename):
 with open(json_filename, "r") as file:
     data = json.load(file)
 
-# Trích xuất dữ liệu từ JSON vào các biến trong Code
+
 mosfet_name = data["transistor"]["name"]
 gm = data["transistor"]["gm"]
 ro = data["transistor"]["ro"]
@@ -36,7 +36,7 @@ print(f"--- Đã nạp cấu hình thành công cho Transistor: {mosfet_name} --
 
 ###################
 
-# GHI CHU VE MO HINH DAY DU (hinh a/b):
+# 
 # Mo hinh gom Cgs, Cgd, gm*vgs, ro, va hai tu ky sinh do than (body): Cdb (D-B) va Csb (S-B).
 # Trong cau hinh khuech dai CS chuan, cuc Nguon S duoc noi truc tiep xuong AC-ground
 # (dong thoi than B thuong cung noi GND), nen Csb bi ngan mach ca hai dau xuong dat
@@ -50,11 +50,11 @@ print(f"--- Đã nạp cấu hình thành công cho Transistor: {mosfet_name} --
 R_L_eff = (R_D * ro) / (R_D + ro)
 Av0 = -gm * R_L_eff
 
-# Các hệ số của phương trình bậc 2: den = a*s^2 + b*s + 1
+#hệ số của den = as^2 + bs + 1
 a = R_sig * R_L_eff * (Cgs * Cgd + Cgs * Cdb + Cgd * Cdb)
 b = R_sig * (Cgs + Cgd * (1 + gm * R_L_eff)) + R_L_eff * (Cdb + Cgd)
 
-# Tử số (Numerator): num = c*s + d (Chứa điểm Zero)
+# Tử số = c*s + d (Chứa điểm Zero)
 c = -R_L_eff * Cgd
 d = -gm * R_L_eff
 
@@ -65,7 +65,7 @@ sys_exact = signal.TransferFunction(num_exact, den_exact)
 
 
 # 2b. TÍNH CÁC CỰC (POLES) CHÍNH XÁC TỪ ĐA THỨC BẬC 2
-# den(s) = a*s^2 + b*s + 1 = 0  ->  nghiem s la vi tri cuc (rad/s)
+
 roots_s = np.roots([a, b, 1])          # nghiem cua a*s^2 + b*s + 1
 f_poles_exact = np.sort(np.abs(roots_s.real) / (2 * np.pi))  # sap xep tang dan
 f_H1_exact, f_H2_exact = f_poles_exact[0], f_poles_exact[1]
@@ -87,12 +87,11 @@ print(f"Sai so xap xi f_H1: {abs(f_H1_approx - f_H1_exact)/f_H1_exact*100:.2f} %
 print(f"Sai so xap xi f_H2: {abs(f_H2_approx - f_H2_exact)/f_H2_exact*100:.2f} %\n")
 
 
-# Quét tần số
+#AC swep
 w = np.logspace(np.log10(f_start), np.log10(f_end), points) * 2 * np.pi
 w, mag_exact, phase_exact = signal.bode(sys_exact, w)
 f_vector = w / (2 * np.pi)
 
-# 3. PLOT ĐỒ THỊ
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
 ax1.semilogx(f_vector, mag_exact, 'r-', linewidth=2, label='complete Bậc 2')
 ax1.axvline(f_H1_exact, color='b', linestyle='--', label=f'$f_{{H1}}$  = {f_H1_exact/1e6:.2f} MHz')
